@@ -1,0 +1,122 @@
+# Lista de Exercícios 
+
+def exercicio1():
+    ano_nascimento = int(input("Digite seu ano de nascimento: "))
+    idade = 2025 - ano_nascimento
+    print(f"Sua idade em 2025 será: {idade} anos")
+
+
+def exercicio2():
+    base = float(input("Digite a base do retângulo: "))
+    altura = float(input("Digite a altura do retângulo: "))
+    area = base * altura
+    print(f"A área do retângulo é: {area:.2f}")
+
+
+def exercicio3():
+    nota1 = float(input("Digite a primeira nota: "))
+    nota2 = float(input("Digite a segunda nota: "))
+    nota3 = float(input("Digite a terceira nota: "))
+    media = (nota1 + nota2 + nota3) / 3
+    print(f"A média é: {media:.2f}")
+
+
+def exercicio4():
+    celsius = float(input("Digite a temperatura em °C: "))
+    fahrenheit = celsius * 9/5 + 32
+    print(f"{celsius:.1f}°C equivale a {fahrenheit:.1f}°F")
+
+
+def exercicio5():
+    preco = float(input("Digite o preço do produto: R$ "))
+    desconto = float(input("Digite o desconto (%): "))
+    valor_desconto = preco * (desconto / 100)
+    preco_final = preco - valor_desconto
+    print(f"Preço original: R$ {preco:.2f}")
+    print(f"Desconto ({desconto:.1f}%): R$ {valor_desconto:.2f}")
+    print(f"Preço final: R$ {preco_final:.2f}")
+
+
+def exercicio6():
+    valor_compra = float(input("Digite o valor da compra: R$ "))
+    valor_pago = float(input("Digite o valor pago: R$ "))
+    troco = valor_pago - valor_compra
+    if troco >= 0:
+        print(f"Troco: R$ {troco:.2f}")
+    else:
+        print(f"Falta: R$ {abs(troco):.2f}")
+
+
+def exercicio7():
+    reais = float(input("Digite o valor em reais: R$ "))
+    cotacao = float(input("Digite a cotação do dólar: R$ "))
+    dolares = reais / cotacao
+    print(f"R$ {reais:.2f} equivale a $ {dolares:.2f}")
+
+
+def exercicio8():
+    valor_inicial = float(input("Digite o valor inicial: R$ "))
+    rendimento = float(input("Digite o rendimento por período (%): "))
+    aporte_mensal = float(input("Digite o aporte mensal: R$ "))
+    total_periodos = int(input("Digite o total de períodos: "))
+
+    rend = (valor_inicial * rendimento) / 100
+    semi_total = valor_inicial + rend
+    total = semi_total + aporte_mensal
+
+    print("\n>>= RESUMO DO INVESTIMENTO >>=")
+    print(f"Valor inicial: R$ {valor_inicial:.2f}")
+    print(f"Rendimento por período: {rendimento:.1f}%")
+    print(f"Aporte por período: R$ {aporte_mensal:.2f}")
+    print(f"Total de períodos: {total_periodos}")
+    print(f"Total após o 1º período: R$ {total:.2f}")
+
+
+# Menu Principal
+def menu():
+    print("\n===================================")
+    print("  Programa Bolsa Futuro Digital ")
+    print("  Atividade 2 Lógica de Programação ")
+    print("  Aluno: Weslley Rezende")
+    print("===================================\n")
+
+    while True:
+        print("=== MENU DE EXERCÍCIOS ===")
+        print("1 - Calculadora de Idade")
+        print("2 - Área do Retângulo")
+        print("3 - Média Aritmética")
+        print("4 - Conversor de Temperatura")
+        print("5 - Calculadora de Desconto")
+        print("6 - Calculadora de Troco")
+        print("7 - Conversor de Moedas")
+        print("8 - Simulador de Investimento ")
+        print("0 - Sair")
+
+        opcao = input("Escolha uma opção: ")
+
+        if opcao == "1":
+            exercicio1()
+        elif opcao == "2":
+            exercicio2()
+        elif opcao == "3":
+            exercicio3()
+        elif opcao == "4":
+            exercicio4()
+        elif opcao == "5":
+            exercicio5()
+        elif opcao == "6":
+            exercicio6()
+        elif opcao == "7":
+            exercicio7()
+        elif opcao == "8":
+            exercicio8()
+        elif opcao == "0":
+            print("Saindo... Até logo!")
+            break
+        else:
+            print("Opção inválida. Tente novamente.")
+
+
+# Início do programa
+if __name__ == "__main__":
+    menu()
