@@ -1,0 +1,306 @@
+# Atividade 3 - Resolução Completa em Python
+# Cada questão com submenu próprio
+
+def questao1():
+    print("\n=== Questão 1 - Detector de Números Primos ===")
+    inicio = int(input("Digite o início do intervalo: "))
+    fim = int(input("Digite o fim do intervalo: "))
+
+    primos = []
+    for num in range(inicio, fim + 1):
+        if num > 1:
+            for i in range(2, int(num**0.5) + 1):
+                if num % i == 0:
+                    break
+            else:
+                primos.append(num)
+
+    print("Primos encontrados:", primos)
+    print("Quantidade:", len(primos))
+
+
+def questao2():
+    while True:
+        print("\n=== Questão 2 - Pares e Ímpares ===")
+        print("1) Verificar se um número é par ou ímpar")
+        print("2) Colorir linhas alternadas de uma tabela")
+        print("3) Validador simplificado de cartão de crédito")
+        print("0) Voltar ao menu principal")
+        op = input("Escolha: ")
+
+        if op == "1":
+            n = int(input("Digite um número: "))
+            print(f"{n} é {'PAR' if n % 2 == 0 else 'ÍMPAR'}")
+
+        elif op == "2":
+            linhas = int(input("Quantas linhas? "))
+            for i in range(1, linhas + 1):
+                cor = "CLARA" if i % 2 != 0 else "ESCURA"
+                print(f"Linha {i:02d} -> {cor}")
+
+        elif op == "3":
+            cartao = input("Número do cartão: ")
+            digitos = ''.join(ch for ch in cartao if ch.isdigit())
+            soma = 0
+            for i, d in enumerate(digitos[::-1]):
+                d = int(d)
+                if i % 2 == 1:
+                    d *= 2
+                    if d > 9:
+                        d -= 9
+                soma += d
+            print("Cartão VÁLIDO" if soma % 10 == 0 else "Cartão INVÁLIDO")
+
+        elif op == "0":
+            break
+        else:
+            print("Opção inválida.")
+
+
+def questao3():
+    print("\n=== Questão 3 - Média de Notas ===")
+    qtd = int(input("Quantas notas? "))
+    notas = []
+    for i in range(qtd):
+        while True:
+            nota = float(input(f"Nota {i+1}: "))
+            if 0 <= nota <= 10:
+                notas.append(nota)
+                break
+            print("Nota inválida, digite entre 0 e 10.")
+
+    media = sum(notas) / len(notas)
+    if media >= 7:
+        situacao = "Aprovado"
+    elif media >= 5:
+        situacao = "Recuperação"
+    else:
+        situacao = "Reprovado"
+    print(f"Média {media:.2f} -> {situacao}")
+
+
+def questao4():
+    while True:
+        print("\n=== Questão 4 - Tabuada ===")
+        n = int(input("Digite o número: "))
+        for i in range(1, 11):
+            print(f"{n} x {i} = {n*i}")
+        if input("Outra tabuada? (s/n): ").lower() != "s":
+            break
+
+
+def questao5():
+    print("\n=== Questão 5 - Soma Sequencial ===")
+    N = int(input("Digite N: "))
+    soma = sum(range(1, N+1))
+    print("Soma com loop:", soma)
+    formula = N * (N + 1) // 2
+    print("Soma com fórmula:", formula)
+
+
+def questao6():
+    times = ["Flamengo", "Palmeiras", "Corinthians", "São Paulo", "Vasco"]
+    while True:
+        print("\n=== Questão 6 - Times de Futebol ===")
+        print("1) Listar todos")
+        print("2) Filtrar por letra inicial")
+        print("3) Adicionar time")
+        print("4) Remover time")
+        print("0) Voltar")
+        op = input("Escolha: ")
+
+        if op == "1":
+            print(times)
+        elif op == "2":
+            letra = input("Letra inicial: ").upper()
+            filtrados = [t for t in times if t.startswith(letra)]
+            print(filtrados)
+        elif op == "3":
+            novo = input("Nome do time: ")
+            times.append(novo)
+        elif op == "4":
+            remover = input("Time a remover: ")
+            if remover in times:
+                times.remove(remover)
+        elif op == "0":
+            break
+        else:
+            print("Inválido.")
+
+
+def questao7():
+    novelas = {"Avenida Brasil": 46, "Pantanal": 42, "Velho Chico": 35}
+    while True:
+        print("\n=== Questão 7 - Novelas e Audiência ===")
+        print("1) Listar todas")
+        print("2) Adicionar nova")
+        print("3) Filtrar sucessos (>40)")
+        print("4) Média e Ranking")
+        print("0) Voltar")
+        op = input("Escolha: ")
+
+        if op == "1":
+            print(novelas)
+        elif op == "2":
+            nome = input("Nome: ")
+            aud = int(input("Audiência: "))
+            novelas[nome] = aud
+        elif op == "3":
+            sucessos = {k:v for k,v in novelas.items() if v > 40}
+            print(sucessos)
+        elif op == "4":
+            media = sum(novelas.values()) / len(novelas)
+            ranking = sorted(novelas.items(), key=lambda x: x[1], reverse=True)
+            print("Média:", media)
+            print("Ranking:", ranking)
+        elif op == "0":
+            break
+        else:
+            print("Inválido.")
+
+
+def questao8():
+    comidas = [
+        ("Acarajé", "Nordeste", 18.0),
+        ("Tacacá", "Norte", 22.0),
+        ("Feijoada", "Sudeste", 25.0),
+        ("Churrasco", "Sul", 30.0)
+    ]
+    while True:
+        print("\n=== Questão 8 - Comidas por Região ===")
+        print("1) Listar todas")
+        print("2) Filtrar por região")
+        print("3) Preço médio")
+        print("0) Voltar")
+        op = input("Escolha: ")
+
+        if op == "1":
+            for nome, regiao, preco in comidas:
+                print(f"{nome} | {regiao} | R$ {preco:.2f}")
+        elif op == "2":
+            r = input("Região: ")
+            filtradas = [c for c in comidas if c[1].lower() == r.lower()]
+            for nome, regiao, preco in filtradas:
+                print(f"{nome} | {regiao} | R$ {preco:.2f}")
+        elif op == "3":
+            media = sum(c[2] for c in comidas) / len(comidas)
+            print(f"Preço médio geral: R$ {media:.2f}")
+        elif op == "0":
+            break
+        else:
+            print("Inválido.")
+
+
+def questao9():
+    historico = []
+    while True:
+        print("\n=== Questão 9 - Calculadora ===")
+        print("1) Soma")
+        print("2) Subtração")
+        print("3) Multiplicação")
+        print("4) Divisão")
+        print("5) Histórico")
+        print("0) Voltar")
+        op = input("Escolha: ")
+
+        if op == "0":
+            break
+        elif op == "5":
+            print(historico)
+            continue
+
+        a = float(input("Número 1: "))
+        b = float(input("Número 2: "))
+        if op == "1":
+            res = a + b
+        elif op == "2":
+            res = a - b
+        elif op == "3":
+            res = a * b
+        elif op == "4":
+            res = a / b
+        else:
+            print("Inválido.")
+            continue
+        historico.append(res)
+        print("Resultado:", res)
+
+
+def questao10():
+    produtos = []
+    while True:
+        print("\n=== Questão 10 - Loja Virtual ===")
+        print("1) Adicionar produto")
+        print("2) Listar produtos")
+        print("3) Buscar produto")
+        print("4) Valor total estoque")
+        print("0) Voltar")
+        op = input("Escolha: ")
+
+        if op == "1":
+            nome = input("Nome: ")
+            categoria = input("Categoria: ")
+            preco = float(input("Preço: "))
+            estoque = int(input("Estoque: "))
+            produtos.append({"nome": nome, "categoria": categoria, "preco": preco, "estoque": estoque})
+        elif op == "2":
+            for p in produtos:
+                print(p)
+        elif op == "3":
+            termo = input("Buscar: ")
+            achados = [p for p in produtos if termo.lower() in p["nome"].lower()]
+            print(achados)
+        elif op == "4":
+            total = sum(p["preco"] * p["estoque"] for p in produtos)
+            print(f"Valor total: R$ {total:.2f}")
+        elif op == "0":
+            break
+        else:
+            print("Inválido.")
+
+
+# Menu principal
+def menu():
+    print("\n===================================")
+    print("  Programa Bolsa Futuro Digital ")
+    print("  Atividade 3  ")
+    print("  Aluno: Weslley Rezende")
+    print("  Professor: Angelo ")
+    print("===================================\n")
+
+    while True:
+        print("\n=== MENU PRINCIPAL ===")
+        for i in range(1, 11):
+            print(f"{i} - Questão {i}")
+        print("0 - Sair")
+        escolha = input("Escolha a questão: ")
+
+        if escolha == "0":
+            print("Encerrando...")
+            break
+        elif escolha == "1":
+            questao1()
+        elif escolha == "2":
+            questao2()
+        elif escolha == "3":
+            questao3()
+        elif escolha == "4":
+            questao4()
+        elif escolha == "5":
+            questao5()
+        elif escolha == "6":
+            questao6()
+        elif escolha == "7":
+            questao7()
+        elif escolha == "8":
+            questao8()
+        elif escolha == "9":
+            questao9()
+        elif escolha == "10":
+            questao10()
+        else:
+            print("Opção inválida")
+
+# Início do programa
+if __name__ == "__main__":
+    menu()
