@@ -1,0 +1,51 @@
+class Cliente:
+    def __init__(self, id_cliente, nome, email):
+        self._id_cliente = id_cliente
+        self.nome = nome          # usa o setter
+        self.email = email        # usa o setter
+
+    # id_cliente só leitura
+    @property
+    def id_cliente(self):
+        return self._id_cliente
+
+    # Nome com validação
+    @property
+    def nome(self):
+        return self._nome
+
+    @nome.setter
+    def nome(self, valor):
+        if not valor.strip():
+            raise ValueError("O nome não pode ser vazio.")
+        self._nome = valor
+
+    # Email com validação
+    @property
+    def email(self):
+        return self._email
+
+    @email.setter
+    def email(self, valor):
+        if not valor.strip():
+            raise ValueError("O email não pode ser vazio.")
+        if "@" not in valor:
+            raise ValueError("O email deve conter '@'.")
+        self._email = valor
+
+    def __str__(self):
+        return f"Cliente {self.id_cliente}: {self.nome} ({self.email})"
+
+
+# Teste
+try:
+    c1 = Cliente(1, "João", "joao@email.com")
+    print(c1)
+
+    # Testando regras
+    # c1.nome = ""             # -> Levanta erro
+    # c1.email = "teste.com"   # -> Levanta erro
+    # c1.id_cliente = 99       # -> Não pode ser alterado
+
+except ValueError as e:
+    print("Erro:", e)
